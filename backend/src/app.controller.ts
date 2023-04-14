@@ -26,4 +26,18 @@ export class AppController {
     const { dataId, maxSize } = storeNewData;
     return await this.appService.storeExternalData(dataId, maxSize);
   }
+  
+  @Get('/storedata/predict')
+  async findAllPredict() {
+    return await this.appService.findAllPredict();
+  }
+
+  @UseInterceptors(CacheInterceptor)
+  @Post('/storedata/predict')
+  async storeNewPredict(
+    @Body() storeNewPredict: { dataFeature: any; predict: string },
+  ) {
+    const { dataFeature, predict } = storeNewPredict;
+    return await this.appService.storeNewPredict(dataFeature, predict);
+  }
 }
