@@ -32,5 +32,4 @@ export class AppService {
     await this.cacheService.set(key, data, 0);
 
     return await this.cacheService.get(key);
-  }
 }
