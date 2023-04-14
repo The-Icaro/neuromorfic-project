@@ -9,4 +9,4 @@ def get_data_by_external_id(external_id='1511300'):
 def store_new_external_data(external_id='1511300', max_size=8000):
   return requests.post(f'{BACKEND_ROUTE}', 
                             { "dataId": external_id
-                            , "maxSize": max_size})
+                            , "maxSize": max_size}).json()

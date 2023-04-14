@@ -1,4 +1,3 @@
-import json
 import pandas as pd
 import streamlit as st
 
@@ -35,9 +34,14 @@ def form():
         with col___4: pass
         with col___5: pass
 
+        predicted = False
+
         with col___3:
           if st.form_submit_button('Make Prediction'):
-              test_data = pd.DataFrame(form_data)
+              test_data = pd.DataFrame(form_data, index=[0])
               predict_response = predict(test_data)
-              store_new_predict(json.dumps(test_data), predict_response['prediction_label'])
-              results(test_data, predict_response)
+              store_new_predict(predict_response['prediction_label'], form_data)
+              predicted = True
+
+        if predicted:
+          results(test_data, predict_response['prediction_label'].item())
