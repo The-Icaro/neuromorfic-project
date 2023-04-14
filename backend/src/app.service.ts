@@ -21,6 +21,29 @@ export class AppService {
     return await this.setCacheData(dataId, data);
   }
 
+  async findAllPredict() {
+    const keys = await this.cacheService.store.keys('predict:*');
+
+    const allData: { [key: string]: any } = {};
+
+    for (const key of keys) {
+      allData[key] = await this.cacheService.get(key);
+    }
+
+    return allData;
+  }
+
+  async storeNewPredict(dataFeature: any, predict: string) {
+    const data = {
+      dataFeature: dataFeature,
+      predict: predict,
+    };
+
+    const date = new Date().toISOString();
+
+    return await this.setCacheData(`predict:${date}`, data);
+  }
+
   async getCacheData(key: string) {
     if (!key) return [];
     return await this.cacheService.get(key);
