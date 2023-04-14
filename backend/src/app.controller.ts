@@ -26,7 +26,7 @@ export class AppController {
     const { dataId, maxSize } = storeNewData;
     return await this.appService.storeExternalData(dataId, maxSize);
   }
-  
+
   @Get('/storedata/predict')
   async findAllPredict() {
     return await this.appService.findAllPredict();
