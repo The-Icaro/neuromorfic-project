@@ -16,7 +16,7 @@ FROM node:16-alpine3.16 as runner
 WORKDIR /app
 
 ENV PORT 3000
-ENV REDIS_HOST=localhost
+ENV REDIS_HOST=redis-primary
 ENV REDIS_PORT=6379
 
 COPY --from=builder /app/node_modules ./node_modules
@@ -26,4 +26,4 @@ COPY --from=builder /app/.env ./
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start:prod"]
