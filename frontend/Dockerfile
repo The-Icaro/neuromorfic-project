@@ -16,6 +16,7 @@ FROM base AS development
 RUN pipenv install --system --dev --skip-lock
 COPY . .
 
+ENV ENV=development
 ENV BACKEND_ROUTE=http://backend-backend-1:3000/app/storedata
 
 CMD ["streamlit", "run", "main.py"]
