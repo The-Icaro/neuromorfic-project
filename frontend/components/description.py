@@ -4,7 +4,8 @@ import streamlit as st
 
 from services.data import get_data_by_external_id
 
-DATASET_PATH = os.path.realpath('model/dataset.csv')
+DATASET_PATH = 'model/dataset.csv' if os.getenv('ENV') == 'development' else 'frontend/model/dataset.csv'
+DATASET_ABSOLUT_PATH = os.path.realpath(DATASET_PATH)
 
 def description():
     
